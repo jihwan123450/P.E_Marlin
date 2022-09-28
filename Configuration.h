@@ -755,49 +755,6 @@
 #endif
 
 //===========================================================================
-//====================== PID > Bed Temperature Control ======================
-//===========================================================================
-
-/**
- * PID Bed Heating
- *
- * If this option is enabled set PID constants below.
- * If this option is disabled, bang-bang will be used and BED_LIMIT_SWITCHING will enable hysteresis.
- *
- * The PID frequency will be the same as the extruder PWM.
- * If PID_dT is the default, and correct for the hardware/configuration, that means 7.689Hz,
- * which is fine for driving a square wave into a resistive load and does not significantly
- * impact FET heating. This also works fine on a Fotek SSR-10DA Solid State Relay into a 250W
- * heater. If your configuration is significantly different than this and you don't understand
- * the issues involved, don't use bed PID until someone else verifies that your hardware works.
- * @section bed temp
- */
-//#define PIDTEMPBED
-
-//#define BED_LIMIT_SWITCHING
-
-/**
- * Max Bed Power
- * Applies to all forms of bed control (PID, bang-bang, and bang-bang with hysteresis).
- * When set to any value below 255, enables a form of PWM to the bed that acts like a divider
- * so don't use it unless you are OK with PWM on your bed. (See the comment on enabling PIDTEMPBED)
- */
-#define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
-
-#if ENABLED(PIDTEMPBED)
-//#define MIN_BED_POWER 0
-//#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.
-
-// 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-// from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 10.00
-#define DEFAULT_bedKi .023
-#define DEFAULT_bedKd 305.4
-
-// FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
-#endif // PIDTEMPBED
-
-//===========================================================================
 //==================== PID > Chamber Temperature Control ====================
 //===========================================================================
 
